@@ -1,7 +1,10 @@
 // server.js
 const express = require('express');
 const app = express();
-const port = 5000;
+
+// Використовуємо порт зі змінної середовища, або 5000 за замовчуванням
+const port = process.env.PORT || 5000;
+
 const route1 = require('./routes');
 const route2 = require('./routes');
 const route3 = require('./routes');
@@ -20,7 +23,6 @@ app.use('/verifyToken', route6)
 app.use('/resetPassword', route7)
 app.use('/api', route8)
 
-app.listen(port,() => {
+app.listen(port, () => {
     console.log(`Сервер запущено на http://localhost:${port}`);
-
 });
