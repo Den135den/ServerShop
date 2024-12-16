@@ -13,6 +13,7 @@ const route5 = require('./routes');
 const route6 = require('./routes');
 const route7 = require('./routes');
 const route8 = require('./routes');
+const route9 = require('./routes');
 
 app.use('/', route1);
 app.use('/register', route2);
@@ -22,6 +23,7 @@ app.use('/forgotPassword', route5)
 app.use('/verifyToken', route6)
 app.use('/resetPassword', route7)
 app.use('/api', route8)
+app.use('/commodity', route9)
 
 app.listen(port, () => {
     console.log(`Сервер запущено на http://localhost:${port}`);

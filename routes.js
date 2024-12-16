@@ -148,8 +148,8 @@ router.post('/register', async (req, res) => {
                 const transporter = nodemailer.createTransport({
                     service: 'gmail',
                     auth: {
-                        user: 'dedomelchenko2@gmail.com',
-                        pass: 'fnos fvgu eqig tqug'
+                        user: 'jemmytorshop@gmail.com',
+                        pass: 'oraf ftzi bcns yjau'
                     }
                 });
 
@@ -228,8 +228,8 @@ router.post('/login', async (req, res) => {
          const transporter = nodemailer.createTransport({
             service:'gmail',
             auth:{
-                user: 'dedomelchenko2@gmail.com',
-                pass: 'fnos fvgu eqig tqug'
+                user: 'jemmytorshop@gmail.com',
+                pass: 'oraf ftzi bcns yjau'
             }
         });
 
@@ -362,8 +362,8 @@ router.post('/forgotPassword', async (req, res) => {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: 'dedomelchenko2@gmail.com',
-                    pass: 'fnos fvgu eqig tqug'
+                    user: 'jemmytorshop@gmail.com',
+                    pass: 'oraf ftzi bcns yjau'
                 }
             });
         
@@ -373,7 +373,7 @@ router.post('/forgotPassword', async (req, res) => {
                 WHERE email = ?`, [token, codePage, email]);
         
             const mailOptions = {
-                from: 'dedomelchenko2@gmail.com',
+                user: 'jemmytorshop@gmail.com',
                 to: email,
                 subject: 'Password Reset',
                 html: `<p>You are receiving this email because you (or someone else) have requested the reset of the password for your account.</p>
@@ -510,6 +510,56 @@ router.get('/api', async function(req, res) {
         }
     });
 });
+
+
+router.post('/commodity', async (req, res)=>{
+   console.log(req.body)
+   try{
+   
+    if (!req.body || Object.keys(req.body).length === 0) {
+        return res.status(400).json({ error: 'Request body is missing or empty' });
+      }
+  
+
+        let {number, price, name, telephone, address, email} = req.body
+        await connection.query(`INSERT INTO buy (name, address, email, telephone, price, number) VALUES (?, ?, ?, ?, ?, ?)`,
+            [name, address, email, telephone, price, number]
+        )
+        const [rows] = await connection.query(`SELECT * FROM buy`)
+        res.status(200).json(rows)
+     
+
+   }
+   catch(er){
+    console.log(er)
+   }
+   
+})
+
+
+router.post('/communication', async (req, res)=>{
+    console.log(req.body)
+    try{
+    
+     if (!req.body || Object.keys(req.body).length === 0) {
+         return res.status(400).json({ error: 'Request body is missing or empty' });
+       }
+   
+ 
+         let {number, name, email, message} = req.body
+         await connection.query(`INSERT INTO communication (name, email, number, message) VALUES (?, ?, ?, ?)`,
+             [name, email, number, message]
+         )
+         const [rows] = await connection.query(`SELECT * FROM communication`)
+         res.status(200).json(rows)
+      
+ 
+    }
+    catch(er){
+     console.log(er)
+    }
+    
+ })
 
 
 module.exports = router;
