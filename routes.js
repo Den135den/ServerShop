@@ -378,7 +378,7 @@ router.post('/forgotPassword', async (req, res) => {
                 subject: 'Password Reset',
                 html: `<p>You are receiving this email because you (or someone else) have requested the reset of the password for your account.</p>
                        <p>Please click on the following link, or paste this into your browser to complete the process:</p>
-                       <p>http://localhost:3000/resetPassword?token=${token}</p>
+                       <p>https://servershop-4.onrender.com/resetPassword?token=${token}</p>
                        <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>`
             };
         
